@@ -33,7 +33,7 @@ if(isset($_GET["eliminar" /*la accion se realisara siempre y cuando se precione 
    if($afectado==1){/*si afectados es igual a 1 se despliega la siguiente alerta*/
     echo"<script> alert('EL empleado [$no_empleado,$nombre]  se elimino correctamente'); location.href='../eliminar.php'; </script>";
    }else{/*sino se despliega la siguiente alerta*/
-    echo"<script> alert('EL empleado [$no_empleado,$nombre] no se elimino correctamente'); location.href='../alta.php'; </script>";
+    echo"<script> alert('EL empleado [$no_empleado,$nombre] no se elimino correctamente'); location.href='../eliminar.php'; </script>";
    }
 }
 /*cierre de la base*/

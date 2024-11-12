@@ -58,7 +58,7 @@
         </section>
         <section class="table__body">
                 <table class="table table-striped table-dark table_id ">
-                    <tr>
+                <thead>  <tr>
                     <th>no_empleado</th>
                         <th>nombre</th>
                         <th>edad</th>
@@ -76,7 +76,7 @@
                         <th>dependencia</th>
                         <th>Eliminar</th>
                         <th>Editar</th>
-                    </tr>
+                    </tr></thead>
                     <?php
                     /*conección con la base de datos siyeca*/
        $conexion=mysqli_connect("localhost","root","","siyeca");

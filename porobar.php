@@ -22,21 +22,11 @@
                     </label>
                     <nav class="navbar">
                     <ul>
-                           <center> <li><a href="menu.html">Menu</a></li>
-                            <li><a href="alta.php">Alta empleados</a></li>
-                            <li><a href="eliminar.php">Modificaciones</a> </li>
+                            <li><a href="menu.html">Menu</a></li>
+                            <li><a href="empleados.php">Empleados</a></li>
+                            <li><a href="dependecias/altaobras.php">Alta empleados</a></li>
+                            <li><a href="dependecias/modobras.php">Modificaciones</a> </li>
                             <li><a href="index.php">Salir</a></li>
-
-
-
-                            <h2>dependencias</h2></center>
-                 <li><a href="obras.php">Obras publicas</a></li>
-                 <li><a href="dependecias/desarrollo_social.php">Desarrollo social</a></li>
-                 <li><a href="dependecias/juridico.php">Juridico</a></li>
-                 <li><a href="dependecias/proteccion_civil.php">Proteccion civil</a></li>
-                 <li><a href="dependecias/registro_civil.php">Registro civil</a></li>
-                 <li><a href="dependecias/Seguridad.php">Seguridad</a></li>
-                 <li><a href="dependecias/trancito.php">Trancito</a></li>
                         </ul>
                     </nav>
                 </div>   
@@ -59,28 +49,24 @@
         </section>
         <section class="table__body">
                 <table class="table table-striped table-dark table_id ">
-                    <tr>
-                    <th>no_empleado</th>
-                        <th>nombre</th>
-                        <th>edad</th>
-                        <th>CURP</th>
-                        <th>num_tel</th>
-                        <th>nacionalidad</th>
-                        <th>genero</th>
-                        <th>dirreccion</th>
-                        <th>profesion</th>
-                        <th>ocupacion</th>
-                        <th>tipo de sangre</th>
-                        <th>RFC</th>
-                        <th>estado civil</th>
-                        <th>tel emergencia</th>
-                        <th>dependencia</th>
-                    </tr>
+                <thead>  <tr>
+                    <th>hora_entrada</th>
+                        <th>hora_salida</th>
+                        <th>sueldo_quincenal</th>
+                        <th>fecha_pago</th>
+                        <th>forma_pago</th>
+                        <th>tipo_banco</th>
+                        <th>dias_laborales</th>
+                        <th>fecha_ingreso</th>
+                        <th>identificador_nomina</th>
+                        <th>no_empleado</th>
+                        <th>Eliminar</th>
+                    </tr></thead>
                     <?php
                     /*conección con la base de datos siyeca*/
        $conexion=mysqli_connect("localhost","root","","siyeca");
        /*funcion a realisar, mostrar los registros de la base de datos*/
-       $alumnos= "select * from alta_empleados"
+       $alumnos= "select * from obras_publicas_nomina"
 ?>
          <?php
         $resultado=mysqli_query($conexion,$alumnos);
@@ -89,23 +75,39 @@
             ?>
             <tr>
         <!--registros-->
+        <td> <?php echo $row["hora_entrada"];?> </td>
+                <td> <?php echo $row["hora_salida"];?> </td>
+                <td> <?php echo $row["sueldo_quincenal"];?> </td>
+                <td> <?php echo $row["fecha_pago"];?> </td>
+                <td> <?php echo $row["forma_pago"];?> </td>
+                <td> <?php echo $row["tipo_banco"];?> </td>
+                <td> <?php echo $row["dias_laborales"];?> </td>
+                <td> <?php echo $row["fecha_ingreso"];?> </td>
+                <td> <?php echo $row["identificador_nomina"];?> </td>
                 <td> <?php echo $row["no_empleado"];?> </td>
-                <td> <?php echo $row["nombre"];?> </td>
-                <td> <?php echo $row["edad"];?> </td>
-                <td> <?php echo $row["curp"];?> </td>
-                <td> <?php echo $row["num_tel"];?> </td>
-                <td> <?php echo $row["nacionalidad"];?> </td>
-                <td> <?php echo $row["genero"];?> </td>
-                <td> <?php echo $row["dirreccion"];?> </td>
-                <td> <?php echo $row["profesion"];?> </td>
-                <td> <?php echo $row["ocupacion"];?> </td>
-                <td> <?php echo $row["tipo_de_sangre"];?> </td>
-                <td> <?php echo $row["rfc"];?> </td>
-                <td> <?php echo $row["estado_civil"];?> </td>
-                <td> <?php echo $row["tel_emergencia"];?> </td>
-                <td> <?php echo $row["dependencia"];?> </td>
+                   <!--Formulario/Boton de eliminar registros-->
+                <td> <form action='../php/obraseliminar.php' method='GET'>
+                <input type="hidden" name="no_empleado"  value='<?php echo $row["no_empleado"];?>'>
+                <input type="hidden" name="nombre"  value='<?php echo $row["nombre"];?>'>
+                <input type="hidden" name="edad"  value='<?php echo $row["edad"];?>'>
+                <input type="hidden" name="curp"  value='<?php echo $row["curp"];?>'>
+                <input type="hidden" name="num_tel"  value='<?php echo $row["num_tel"];?>'>
+                <input type="hidden" name="nacionalidad"  value='<?php echo $row["nacionalidad"];?>'>
+                <input type="hidden" name="genero"  value='<?php echo $row["genero"];?>'>
+                <input type="hidden" name="dirreccion"  value='<?php echo $row["dirreccion"];?>'>
+                <input type="hidden" name="profesion"  value='<?php echo $row["profesion"];?>'>
+                <input type="hidden" name="ocupacion"  value='<?php echo $row["ocupacion"] ?>'>
+                <input type="hidden" name="tipo_de_sangre"  value='<?php echo $row["tipo_de_sangre"];?>'>
+                <input type="hidden" name="rfc"  value='<?php echo $row["rfc"];?>'>
+                <input type="hidden" name="Estado_civil"  value='<?php echo $row["estado_civil"];?>'>
+                <input type="hidden" name="estado_civil"  value='<?php echo $row["tel_emergencia"];?>'>
+                <input type="hidden" name="dependencia"  value='<?php echo $row["dependencia"];?>'>
+                <button class="button" name="eliminar"  value='eliminar' onclick='return confirmacion()'>
+  <svg viewBox="0 0 448 512" class="svgIcon"><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path></svg>
+</button>
                 </form></td> 
                 
+            
             </tr>
         <?php } ?>
                 </table>

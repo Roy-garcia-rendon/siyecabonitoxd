@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 include 'conexion_be.php'; /*incluye la coneccion a base de datos*/
  /*declarando variables*/

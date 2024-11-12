@@ -3,19 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/c7.css">
+    <link rel="stylesheet" href="../css/c10.css">
     <title>empleados</title>
 </head>
-<script>
-    function confirmacion(){
-        var respuesta=confirm("¿Desea realmente borrar el registro?");
-        if(respuesta == true){
-            return true;
-        }else{
-            return false;
-        }
-    }
-</script>
+<!--script para la confirmacion de eliminacion de datos-->
+
 <body>
 <style>body{
     background-image: url(../mediaa/San\ Juan.jpg);
@@ -29,8 +21,8 @@
                         <ing src="media/Menu.png" class="Menu-icono" alt="">
                     </label>
                     <nav class="navbar">
-                        <ul>
-                            <li><a href="../menu.html">Menu</a></li>
+                    <ul>
+                    <li><a href="../menu.html">Menu</a></li>
                             <li><a href="../empleados.php">Empleados</a></li>
                             <li><a href="altaobras.php">Alta empleados</a></li>
                             <li><a href="../index.php">Salir</a></li>
@@ -39,28 +31,40 @@
                 </div>   
                 </header>
                 <div class="contentcontainer">
-                 <center><h2>SISTEMA DE ATENCION SIYECA</h2></center>
+                
                 </div>
-<center>
-<table>
-                    <tr>
-                        <td>hora_entrada</td>
-                        <td>hora_salida</td>
-                        <td>sueldo_quincenal</td>
-                        <td>fecha_pago</td>
-                        <td>forma_pago</td>
-                        <td>tipo_banco</td>
-                        <td>dias_laborales</td>
-                        <td>fecha_ingreso</td>
-                        <td>identificador_nomina</td>
-                        <td>no_empleado</td>
-                        <td>Eliminar</td>
-                       
-                    </tr>
+<center><main class="table" id="customers_table">
+        <section class="table__header">
+        <h2>SISTEMA DE ATENCION SIYECA</h2>
+            <div class="input-group" >
+            <div class="container-fluid">
+  <form class="d-flex"><!--Formulario para la busqueda a tiempo real-->
+      <input class="input light-table-filter" data-table="table_id" type="search" 
+      placeholder="Buscar un registro">
+      <hr>
+      </form>
+  </div>
+            </div>
+        </section>
+        <section class="table__body">
+                <table class="table table-striped table-dark table_id ">
+                <thead>  <tr>
+                    <th>hora_entrada</th>
+                        <th>hora_salida</th>
+                        <th>sueldo_quincenal</th>
+                        <th>fecha_pago</th>
+                        <th>forma_pago</th>
+                        <th>tipo_banco</th>
+                        <th>dias_laborales</th>
+                        <th>fecha_ingreso</th>
+                        <th>identificador_nomina</th>
+                        <th>no_empleado</th>
+                        <th>Eliminar</th>
+                    </tr></thead>
                     <?php
-                     /*coneccion a  la base de datos siyeca nomina obras publicas*/
+                    /*conección con la base de datos siyeca*/
        $conexion=mysqli_connect("localhost","root","","siyeca");
-        /*Funcion a realizar, mostrar los registros de la tabla obras publicas*/
+       /*funcion a realisar, mostrar los registros de la base de datos*/
        $alumnos= "select * from obras_publicas_nomina"
 ?>
          <?php
@@ -70,7 +74,7 @@
             ?>
             <tr>
         <!--registros-->
-                <td> <?php echo $row["hora_entrada"];?> </td>
+        <td> <?php echo $row["hora_entrada"];?> </td>
                 <td> <?php echo $row["hora_salida"];?> </td>
                 <td> <?php echo $row["sueldo_quincenal"];?> </td>
                 <td> <?php echo $row["fecha_pago"];?> </td>
@@ -80,7 +84,7 @@
                 <td> <?php echo $row["fecha_ingreso"];?> </td>
                 <td> <?php echo $row["identificador_nomina"];?> </td>
                 <td> <?php echo $row["no_empleado"];?> </td>
-        <!--Formulario/Boton de eliminar registros-->
+                   <!--Formulario/Boton de eliminar registros-->
                 <td> <form action='../php/obraseliminar.php' method='GET'>
                 <input type="hidden" name="no_empleado"  value='<?php echo $row["no_empleado"];?>'>
                 <input type="hidden" name="nombre"  value='<?php echo $row["nombre"];?>'>
@@ -107,11 +111,12 @@
         <?php } ?>
                 </table>
                 </center>
-
+                </section>
     
     <?php
-     mysqli_free_result($resultado);
   mysqli_close($conexion);
   ?>
 </body>
+<script src="../js/buscador.js"></script><!--Conexion a javascript-->
+
 </html>
